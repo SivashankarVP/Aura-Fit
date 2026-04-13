@@ -1,23 +1,26 @@
 👗 Smart Outfit Recommendation System
-<p align="center"> <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=28&pause=1000&color=00C7B7&center=true&vCenter=true&width=800&lines=Smart+Outfit+Recommendation+System;AI+Based+Fashion+Suggestions;Weather+%2B+User+Preference+Analysis;Built+with+React+%26+Node.js" /> </p> <p align="center"> <img src="https://img.shields.io/badge/Frontend-React-blue?logo=react" /> <img src="https://img.shields.io/badge/Backend-Node.js-green?logo=node.js" /> <img src="https://img.shields.io/badge/Language-JavaScript-yellow?logo=javascript" /> <img src="https://img.shields.io/badge/AI-Recommendation-orange" /> <img src="https://img.shields.io/badge/Hosted%20on-Netlify-00C7B7?logo=netlify" /> <img src="https://img.shields.io/badge/License-MIT-yellow" /> </p>
+<p align="center"> <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=28&pause=1000&color=00C7B7&center=true&vCenter=true&width=800&lines=Smart+Outfit+Recommendation+System;AI+%2B+Computer+Vision+Based+Fashion;Weather+%2B+User+Preference+Analysis;Built+with+Django+%26+Machine+Learning" /> </p> <p align="center"> <img src="https://img.shields.io/badge/Backend-Django-green?logo=django" /> <img src="https://img.shields.io/badge/Language-Python-blue?logo=python" /> <img src="https://img.shields.io/badge/AI-Deep%20Learning-orange" /> <img src="https://img.shields.io/badge/Computer%20Vision-MediaPipe-red" /> <img src="https://img.shields.io/badge/ML-Scikit--Learn-yellow" /> <img src="https://img.shields.io/badge/UI-HTML%2FCSS-blue" /> <img src="https://img.shields.io/badge/License-MIT-yellow" /> </p>
 📌 Overview
 
-The Smart Outfit Recommendation System is an AI-powered web application that suggests personalized outfits based on real-time factors like weather conditions and user preferences. It enhances user experience by delivering smart, context-aware fashion recommendations.
+The Smart Outfit Recommendation System is an AI-powered web application that uses machine learning and computer vision to recommend personalized outfits. It analyzes user preferences, body features, and real-time conditions like weather to deliver intelligent and context-aware fashion suggestions.
 
 ✨ Key Features
-👕 Personalized Recommendations – Based on user preferences
-🌦️ Weather-Based Suggestions – Real-time outfit adaptation
-🤖 AI Decision Logic – Smart recommendation engine
-🎯 User Input System – Customize style, occasion & mood
-⚡ Real-Time Updates – Instant outfit suggestions
-📱 Responsive Design – Works across all devices
-🎨 Modern UI/UX – Clean and user-friendly interface
+👕 Personalized Outfit Suggestions – Based on user style & preferences
+🧠 AI/ML Recommendation Engine – Smart decision-making system
+📸 Computer Vision Integration – Body/feature detection using MediaPipe
+🌦️ Weather-Based Recommendations – Context-aware outfit selection
+🎯 User Input Customization – Occasion, mood, and style filtering
+⚡ Real-Time Processing – Instant recommendations
+📱 Responsive Design – Accessible across devices
+🎨 Modern UI/UX – Clean and interactive interface
 🛠️ Tech Stack
 Layer	Technology
-Frontend	React.js, HTML, CSS
-Backend	Node.js, Express.js
-Logic	JavaScript
-API	Weather API
+Backend	Django (Python)
+AI/ML	Machine Learning, Deep Learning
+Computer Vision	MediaPipe, OpenCV
+Language	Python
+Frontend	HTML, CSS, JavaScript
+Libraries	NumPy, Pandas, Scikit-learn.
 
 📸 Screenshots (Recommended)
 
@@ -27,29 +30,30 @@ Add your project screenshots here
 ![Recommendations](./screens/recommendation.png)
 📂 Project Structure
 smart-outfit-recommendation/
-│── frontend/        # React UI
-│── backend/         # API & logic
-│── services/        # Weather API integration
-│── public/          # Static files
-│── package.json
+│── app/             # Django app
+│── models/          # ML models
+│── services/        # Recommendation logic
+│── static/          # CSS, JS files
+│── templates/       # HTML pages
+│── manage.py
 ⚙️ Installation & Setup
 1️⃣ Clone the repository
 git clone https://github.com/SivashankarVP/smart-outfit-recommendation.git
 cd smart-outfit-recommendation
 2️⃣ Install dependencies
-npm install
-3️⃣ Run the application
-npm start
+pip install -r requirements.txt
+3️⃣ Run the server
+python manage.py runserver
 🎯 Use Case
 
-This project demonstrates AI integration with web development, focusing on real-time data processing and personalized user experience. It showcases skills in frontend, backend, and intelligent decision-making systems.
+This project demonstrates AI + Computer Vision integration with web development, focusing on real-time personalization. It showcases skills in machine learning, backend development, and intelligent recommendation systems.
 
 🚀 Future Enhancements
-🧠 Advanced AI/ML recommendation model
-📊 User behavior tracking & learning
-👗 Outfit image preview generation
+🧠 Advanced deep learning recommendation models
+👗 Virtual try-on using computer vision
+📊 User behavior learning system
 🛍️ E-commerce integration
-🎙️ Voice-based outfit suggestions
+🎙️ Voice-based outfit assistant
 🤝 Contributing
 
 Contributions are welcome!
@@ -70,7 +74,7 @@ If you like this project:
 
 🙌 Acknowledgement
 
-Inspired by the idea of combining AI + real-time data to solve everyday fashion decisions.
+Inspired by combining AI, Computer Vision, and real-time data to solve everyday fashion decision-making problems.
 
 📜 License
 
