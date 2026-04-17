@@ -1,100 +1,73 @@
 import React from 'react';
-import { ShoppingBag, Heart, User, Search, Menu, Sun, Moon, Sparkles } from 'lucide-react';
+import { ShoppingBag, Heart, User, Search, Menu, Sun, Moon } from 'lucide-react';
 import useStore from '../store/useStore';
-import { motion } from 'framer-motion';
 
 const Navbar = () => {
-  const { cartCount, setCartOpen, setSidebarOpen, darkMode, toggleDarkMode, setFilter, filters } = useStore();
+  const { cartCount, setCartOpen, setSidebarOpen, darkMode, toggleDarkMode } = useStore();
 
-  const categories = ["All", "Spring Lookbook", "Summer Wear", "Formal", "Casual", "Accessories"];
+  const categories = ["Best Sellers", "New Releases", "Spring Lookbook", "Men", "Women", "Accessories", "Tech Wear", "Sustainability"];
 
   return (
     <>
-      <nav className="glass sticky top-0 z-[60] py-5 px-6 md:px-12 border-b">
-        <div className="max-w-[1800px] mx-auto flex items-center justify-between gap-8">
-          {/* Left: Brand & Menu */}
-          <div className="flex items-center gap-6">
+      <nav className="glass sticky top-0 z-50 py-4 px-6 md:px-10 border-b">
+        <div className="max-w-[1700px] mx-auto flex items-center justify-between gap-4 md:gap-8">
+          <div className="flex items-center gap-3">
             <button 
               onClick={() => setSidebarOpen(true)}
-              className="p-3 bg-white/5 hover:bg-white/10 rounded-2xl transition-all border border-white/5 active:scale-90 group"
+              className="flex items-center gap-2 p-2 px-3 hover:bg-black/5 dark:hover:bg-white/5 rounded-xl transition-all border border-transparent hover:border-indigo-500/20 group"
             >
-              <Menu className="w-5 h-5 group-hover:text-indigo-500 transition-colors" />
+              <Menu className="w-6 h-6 group-hover:text-indigo-500 transition-colors" />
+              <span className="hidden sm:block text-sm font-black uppercase tracking-widest text-slate-500 group-hover:text-indigo-500 transition-colors">All Filters</span>
             </button>
-            <div className="flex items-center gap-2 cursor-pointer group">
-                <div className="w-10 h-10 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg group-hover:rotate-[10deg] transition-transform">
-                    <Sparkles className="w-6 h-6 text-white" />
-                </div>
-                <div className="text-2xl font-black text-white tracking-[-0.05em]">
-                    AURAFIT<span className="text-indigo-500">AI</span>
-                </div>
+            <div className="text-2xl md:text-3xl font-black bg-gradient-to-r from-indigo-500 to-purple-600 bg-clip-text text-transparent tracking-tighter cursor-pointer ml-4">
+              AURAFIT<span className="text-current ml-px">AI</span>
             </div>
           </div>
 
-          {/* Center: Universal Search */}
-          <div className="hidden lg:flex flex-1 max-w-xl relative group">
-            <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500 group-focus-within:text-indigo-500 transition-colors" />
+          <div className="hidden lg:flex flex-1 max-w-2xl relative">
             <input 
               type="text" 
-              placeholder="Search AI curated collections..." 
-              className="w-full bg-white/5 border border-white/5 focus:border-indigo-500/40 rounded-2xl py-3.5 px-14 focus:outline-none transition-all font-semibold text-sm placeholder:text-slate-600 focus:bg-white/10"
+              placeholder="Search collections..." 
+              className="w-full bg-black/5 dark:bg-white/5 border border-transparent focus:border-indigo-500/50 rounded-2xl py-3 px-12 focus:outline-none transition-all font-medium text-sm"
             />
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
           </div>
 
-          {/* Right: Actions */}
-          <div className="flex items-center gap-2 md:gap-4">
+          <div className="flex items-center gap-1 md:gap-4">
             <button 
               onClick={toggleDarkMode}
-              className="w-12 h-12 flex items-center justify-center bg-white/5 hover:bg-white/10 rounded-2xl border border-white/5 transition-all text-slate-400"
+              className="p-2.5 hover:bg-black/5 dark:hover:bg-white/5 rounded-xl transition-all"
             >
               {darkMode ? <Sun className="w-5 h-5 text-amber-400" /> : <Moon className="w-5 h-5 text-indigo-600" />}
+            </button>
+            
+            <button className="hidden sm:p-2.5 hover:bg-black/5 dark:hover:bg-white/5 rounded-xl transition-colors">
+              <Heart className="w-5 h-5" />
             </button>
 
             <button 
               onClick={() => setCartOpen(true)}
-              className="flex items-center gap-3 px-6 h-12 bg-white text-slate-900 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-slate-100 transition-all shadow-xl shadow-white/5 active:scale-95"
+              className="flex items-center gap-2 px-4 md:px-6 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-2xl transition-all shadow-lg shadow-indigo-500/20 active:scale-95 group font-bold"
             >
               <div className="relative">
-                <ShoppingBag className="w-4 h-4" />
+                <ShoppingBag className="w-5 h-5 group-hover:-translate-y-0.5 transition-transform" />
                 {cartCount > 0 && (
-                    <motion.span 
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        className="absolute -top-2 -right-2 w-4 h-4 bg-indigo-600 text-white rounded-full text-[9px] flex items-center justify-center border-2 border-white"
-                    >
-                        {cartCount}
-                    </motion.span>
+                    <span className="absolute -top-1.5 -right-1.5 w-4 h-4 bg-rose-500 rounded-full text-[10px] flex items-center justify-center border-2 border-indigo-600 animate-in fade-in zoom-in">{cartCount}</span>
                 )}
               </div>
-              Cart
+              <span className="hidden md:block text-sm">Cart</span>
             </button>
           </div>
         </div>
       </nav>
       
-      {/* Dynamic Category Bar */}
-      <div className="bg-[#030712] border-b border-white/5 py-4 overflow-x-auto custom-scrollbar">
-        <div className="container flex items-center gap-10 whitespace-nowrap">
-          {categories.map(cat => (
-              <button 
-                key={cat} 
-                onClick={() => setFilter('season', cat)}
-                className={`text-[10px] font-black uppercase tracking-[0.2em] transition-all relative py-1 ${filters.season === cat ? 'text-indigo-400' : 'text-slate-500 hover:text-white'}`}
-              >
+      {/* Category Bar */}
+      <div className="bg-slate-100 dark:bg-slate-900/50 border-b dark:border-white/5 py-2 overflow-x-auto custom-scrollbar whitespace-nowrap px-6 md:px-10 flex gap-6 md:gap-10">
+        {categories.map(cat => (
+            <button key={cat} className="text-[11px] font-black uppercase tracking-widest text-slate-500 hover:text-indigo-500 transition-colors py-1">
                 {cat}
-                {filters.season === cat && (
-                    <motion.div 
-                        layoutId="nav-line"
-                        className="absolute -bottom-1 left-0 right-0 h-0.5 bg-indigo-500 rounded-full"
-                    />
-                )}
-              </button>
-          ))}
-          <div className="h-4 w-px bg-white/10" />
-          <button className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 hover:text-emerald-400 transition-all flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-            Live Drops
-          </button>
-        </div>
+            </button>
+        ))}
       </div>
     </>
   );
