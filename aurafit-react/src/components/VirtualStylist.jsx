@@ -194,39 +194,77 @@ const VirtualStylist = ({ onClose }) => {
             <video ref={videoRef} className="hidden" playsInline muted />
             <canvas ref={canvasRef} width="1280" height="720" className="w-full h-full object-cover scale-x-[-1]" />
             
-            <div className="absolute top-8 left-8 flex flex-col gap-3">
+            <div className="absolute top-8 left-8 flex flex-col gap-3 z-30">
                 <div className="glass px-5 py-2.5 rounded-2xl flex items-center gap-3 border-l-4 border-rose-500 animate-pulse">
                     <Zap className="w-4 h-4 text-rose-500" />
                     <span className="text-[11px] font-black uppercase tracking-widest text-white">Ultra-High Accuracy Mode</span>
                 </div>
                 <div className="glass px-5 py-2.5 rounded-2xl text-[11px] font-bold text-white/50">
-                    VIRTUAL_FIT_ENGINE_V3.0
+                    SKELETAL_MAPPING_V3.2
                 </div>
             </div>
 
+            {/* Cyber HUD Overlays */}
+            {!results && isScanning && (
+                <div className="absolute inset-0 pointer-events-none z-20">
+                    {/* Targeting Reticle */}
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-20 w-64 h-64 border-2 border-indigo-500/20 rounded-full border-dashed animate-[spin_10s_linear_infinite]" />
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-20 w-48 h-48 border border-rose-500/40 rounded-full animate-pulse" />
+                    
+                    {/* Data Stream Left */}
+                    <div className="absolute left-8 bottom-32 flex flex-col gap-2">
+                        {["CALIBRATING_Z_AXIS...", "PHASE_LINK_ESTABLISHED", "FETCHING_TOPOLOGY", "NEURAL_NET_STABLE"].map((t, i) => (
+                            <motion.p 
+                                key={i}
+                                initial={{ opacity: 0, x: -20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ delay: i * 0.2 }}
+                                className="text-[9px] font-mono text-indigo-400/60 uppercase"
+                            >
+                                > {t}
+                            </motion.p>
+                        ))}
+                    </div>
+
+                    {/* Data Stream Right */}
+                    <div className="absolute right-8 top-32 text-right">
+                        <p className="text-[10px] font-black text-white/20 uppercase tracking-[0.3em] mb-4">Real-Time Biometrics</p>
+                        <div className="space-y-1">
+                            {Array.from({length: 8}).map((_, i) => (
+                                <p key={i} className="text-[8px] font-mono text-white/10 uppercase">
+                                    {Math.random().toString(16).slice(2, 10).toUpperCase()}::{Math.floor(Math.random() * 1000)}
+                                </p>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            )}
+
             {!results && !isScanning && (
-                <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-                    <div className="w-80 h-[28rem] border-2 border-white/10 rounded-[4rem] relative overflow-hidden">
+                <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none z-20">
+                    <div className="w-80 h-[28rem] border-2 border-white/10 rounded-[4rem] relative overflow-hidden backdrop-blur-[2px]">
                         <motion.div 
                             className="absolute inset-x-0 h-1 bg-gradient-to-r from-transparent via-rose-500 to-transparent shadow-[0_0_20px_rgba(244,63,94,1)]"
                             animate={{ y: [0, 448, 0] }}
                             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                         />
+                        <div className="absolute inset-0 bg-gradient-to-b from-rose-500/5 via-transparent to-rose-500/5 opacity-50" />
                     </div>
+                    <p className="mt-8 text-[11px] font-black text-white/40 uppercase tracking-[0.5em] animate-pulse">Position within Frame</p>
                 </div>
             )}
 
             {isScanning && (
-                <div className="absolute bottom-12 left-12 right-12">
-                    <div className="h-3 w-full bg-white/5 rounded-full overflow-hidden border border-white/5">
+                <div className="absolute bottom-12 left-12 right-12 z-30">
+                    <div className="h-2 w-full bg-white/5 rounded-full overflow-hidden border border-white/5 backdrop-blur-md">
                         <motion.div 
                             className="h-full bg-gradient-to-r from-rose-500 via-indigo-500 to-purple-500" 
                             style={{ width: `${scanProgress}%` }}
                         />
                     </div>
-                    <div className="flex justify-between items-center mt-4">
-                        <p className="text-[12px] text-rose-400 font-black tracking-[0.3em] uppercase">Analyzing Hyper-Topology...</p>
-                        <p className="text-sm font-mono text-white/40">{Math.round(scanProgress)}%</p>
+                    <div className="flex justify-between items-center mt-4 px-2">
+                        <p className="text-[12px] text-rose-400 font-black tracking-[0.4em] uppercase animate-pulse">Analyzing Hyper-Topology...</p>
+                        <p className="text-sm font-mono text-white/60 font-bold">{Math.round(scanProgress)}%</p>
                     </div>
                 </div>
             )}

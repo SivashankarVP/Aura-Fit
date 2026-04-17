@@ -37,17 +37,18 @@ const ProductGrid = () => {
 
   return (
     <div className="flex-1">
-      <div className="flex items-center justify-between mb-2">
-        <p className="text-sm font-medium">1-{filteredProducts.length} of over 20,000 results for <span className="text-[#c45500] font-bold">"Collections"</span></p>
+      <div className="flex items-center justify-between mb-8">
+        <div>
+          <h1 className="text-3xl font-extrabold text-white mb-1">Explore Collections</h1>
+          <p className="text-slate-400 text-sm">{filteredProducts.length} premium styles found</p>
+        </div>
         
-        <div className="flex items-center gap-2">
-          <span className="text-sm">Sort by:</span>
-          <select className="bg-[#f0f2f2] border border-[#d5d9d9] rounded-md px-2 py-1 text-xs focus:outline-none focus:border-[#e77600] cursor-pointer shadow-sm">
-            <option>Featured</option>
-            <option>Price: Low to High</option>
-            <option>Price: High to Low</option>
-            <option>Avg. Customer Review</option>
-            <option>Newest Arrivals</option>
+        <div className="flex items-center gap-4">
+          <select className="bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-indigo-500 cursor-pointer">
+            <option className="bg-slate-900">Recommended</option>
+            <option className="bg-slate-900">Price: Low to High</option>
+            <option className="bg-slate-900">Price: High to Low</option>
+            <option className="bg-slate-900">Popularity</option>
           </select>
         </div>
       </div>

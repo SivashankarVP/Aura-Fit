@@ -1,5 +1,5 @@
 import React from 'react';
-import { Star, Heart, ShoppingCart, Info } from 'lucide-react';
+import { Star, Heart, ShoppingCart, Info, Sparkles } from 'lucide-react';
 import useStore from '../store/useStore';
 import { motion } from 'framer-motion';
 
@@ -11,65 +11,98 @@ const ProductCard = ({ product }) => {
   return (
     <motion.div 
       layout
-      initial={{ opacity: 0, y: 10 }}
+      initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, scale: 0.95 }}
-      className="bg-white border border-[#e7e7e7] rounded-sm overflow-hidden flex flex-col group h-full hover:shadow-lg transition-shadow cursor-pointer p-3"
-      onClick={() => setSelectedProduct(product)}
+      exit={{ opacity: 0, scale: 0.9 }}
+      transition={{ duration: 0.5 }}
+      className="glass-card group overflow-hidden flex flex-col h-full"
     >
-      <div className="relative aspect-square overflow-hidden mb-3">
+      <div className="relative aspect-[4/5] overflow-hidden">
+        {/* Main Image */}
         <img 
           src={product.image} 
           alt={product.name}
-          className="w-full h-full object-contain mix-blend-multiply transition-transform duration-300 group-hover:scale-105"
+          className="w-full h-full object-cover transition-transform duration-1000 cubic-bezier(0.19, 1, 0.22, 1) group-hover:scale-110"
         />
         
-        {isAIMatch && (
-          <div className="absolute top-0 left-0 bg-[#e67a00] text-white text-[10px] font-black px-2 py-0.5 rounded-sm">
-            AI CHOICE
-          </div>
-        )}
-      </div>
+        {/* Overlay for depth */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-      <div className="flex flex-col flex-1">
-        <h4 className="text-[14px] text-[#0f1111] mb-1 line-clamp-2 leading-tight hover:text-[#c45500]">
-            {product.name}
-        </h4>
-        
-        {/* Rating */}
-        <div className="flex items-center gap-1 mb-1">
-            <div className="flex text-[#ffa41c]">
-                {[...Array(5)].map((_, i) => (
-                    <Star key={i} className={`w-3.5 h-3.5 ${i < Math.floor(product.rating) ? 'fill-current' : 'text-[#ccc]'}`} />
-                ))}
-            </div>
-            <span className="text-[#007185] text-xs font-medium">{product.ratingsCount || '1,240'}</span>
-        </div>
-
-        {/* Price */}
-        <div className="flex items-start gap-px mt-auto">
-          <span className="text-xs font-bold mt-1">₹</span>
-          <span className="text-2xl font-medium leading-none">{product.price}</span>
-          {product.originalPrice && (
-            <div className="flex items-center gap-1 ml-2">
-                <span className="text-xs text-slate-500 line-through font-light">M.R.P: ₹{product.originalPrice}</span>
-                <span className="text-xs font-bold text-[#cc0c39]">({product.discount}% off)</span>
-            </div>
+        {/* Badges */}
+        <div className="absolute top-4 left-4 flex flex-col gap-2 z-20">
+          {product.badge && (
+            <span className={`px-3 py-1 rounded-lg text-[9px] font-black uppercase tracking-[0.15em] shadow-lg ${
+              product.badge === 'Sale' ? 'bg-rose-500 text-white' : 
+              product.badge === 'New' ? 'bg-indigo-600 text-white' : 'bg-emerald-500 text-white'
+            }`}>
+              {product.badge}
+            </span>
+          )}
+          {isAIMatch && (
+            <span className="badge-ai flex items-center gap-1.5 animate-pulse">
+                <Sparkles className="w-3 h-3 fill-current" />
+                AI Perfect Match
+            </span>
+          )}
+          {product.discount && (
+            <span className="bg-amber-400 text-black px-3 py-1 rounded-lg text-[9px] font-black uppercase tracking-widest shadow-lg">
+              -{product.discount}%
+            </span>
           )}
         </div>
 
-        {/* Delivery Info */}
-        <div className="mt-2 space-y-0.5">
-            <p className="text-[12px] text-[#0f1111]">Get it by <span className="font-bold">Tomorrow, Oct 18</span></p>
-            <p className="text-[12px] text-[#565959]">FREE Delivery by Amazon</p>
+        {/* Floating Action Buttons */}
+        <div className="absolute top-4 right-4 flex flex-col gap-3 z-20 translate-x-16 group-hover:translate-x-0 transition-transform duration-500 ease-out">
+          <button 
+            onClick={() => toggleWishlist(product)}
+            className={`w-11 h-11 rounded-2xl glass flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-90 ${isWishlisted(product.id) ? 'text-rose-500 bg-white/20' : 'text-white'}`}
+          >
+            <Heart className={`w-5 h-5 ${isWishlisted(product.id) ? 'fill-current' : ''}`} />
+          </button>
+          <button 
+            onClick={() => setSelectedProduct(product)}
+            className="w-11 h-11 rounded-2xl glass flex items-center justify-center text-white transition-all duration-300 hover:scale-110 active:scale-90"
+          >
+            <Info className="w-5 h-5" />
+          </button>
         </div>
 
-        <button 
-          onClick={(e) => { e.stopPropagation(); addToCart(product, product.sizes[0]); }}
-          className="mt-4 w-full bg-[#ffd814] hover:bg-[#f7ca00] text-[#0f1111] py-1.5 rounded-full text-xs font-medium border border-[#fcd200] shadow-sm active:scale-95 transition-all"
-        >
-          Add to Cart
-        </button>
+        {/* Express Purchase Interaction */}
+        <div className="absolute inset-x-6 bottom-6 translate-y-[120%] group-hover:translate-y-0 transition-transform duration-500 ease-out z-20">
+          <button 
+            onClick={() => addToCart(product, product.sizes[0])}
+            className="w-full bg-white text-slate-900 py-4 rounded-2xl flex items-center justify-center gap-3 text-[10px] font-black uppercase tracking-[0.1em] shadow-2xl hover:bg-slate-100 transition-colors"
+          >
+            <ShoppingCart className="w-4 h-4 fill-current" />
+            Express Purchase
+          </button>
+        </div>
+      </div>
+
+      <div className="p-8 flex-1 flex flex-col">
+        <div className="flex justify-between items-start mb-3">
+          <p className="text-[10px] text-indigo-500 font-extrabold uppercase tracking-[0.2em]">{product.brand}</p>
+          <div className="flex items-center gap-1 bg-amber-400/10 px-2 py-0.5 rounded-full">
+            <Star className="w-3 h-3 text-amber-500 fill-current" />
+            <span className="text-[10px] font-black text-amber-600">{product.rating}</span>
+          </div>
+        </div>
+        
+        <h4 className="text-lg font-bold text-current mb-4 leading-tight group-hover:text-indigo-500 transition-colors">
+            {product.name}
+        </h4>
+        
+        <div className="mt-auto flex items-end justify-between">
+          <div className="flex items-end gap-3">
+            <span className="text-2xl font-black text-current">₹{product.price}</span>
+            {product.originalPrice && (
+              <span className="text-sm text-slate-400 line-through font-medium mb-1">₹{product.originalPrice}</span>
+            )}
+          </div>
+          <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest bg-slate-400/5 px-2 py-1 rounded-md">
+            {product.type}
+          </p>
+        </div>
       </div>
     </motion.div>
   );
