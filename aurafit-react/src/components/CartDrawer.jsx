@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import useStore from '../store/useStore';
 
 const CartDrawer = () => {
-  const { cart, cartOpen, setCartOpen, removeFromCart, updateQty, cartTotal } = useStore();
+  const { cart, cartOpen, setCartOpen, removeFromCart, updateQty, cartTotal, setView } = useStore();
 
   return (
     <AnimatePresence>
@@ -116,7 +116,10 @@ const CartDrawer = () => {
 
                 <button 
                   className="w-full btn-primary py-4 rounded-xl flex items-center justify-center gap-2 group shadow-indigo-500/10"
-                  onClick={() => alert('Proceeding to secure checkout...')}
+                  onClick={() => {
+                    setView('checkout');
+                    setCartOpen(false);
+                  }}
                 >
                   Checkout Now
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />

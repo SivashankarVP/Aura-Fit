@@ -56,6 +56,8 @@ const useStore = create((set, get) => ({
   setAIResult: (r) => set({ aiResult: r }),
 
   // ---- UI ----
+  view: 'store', // 'store' or 'checkout'
+  setView: (v) => set({ view: v }),
   darkMode: true,
   toggleDarkMode: () => set(s => ({ darkMode: !s.darkMode })),
   cartOpen: false,
