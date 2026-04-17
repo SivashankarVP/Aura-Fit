@@ -1,81 +1,38 @@
-👗 Smart Outfit Recommendation System
-<p align="center"> <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=28&pause=1000&color=00C7B7&center=true&vCenter=true&width=800&lines=Smart+Outfit+Recommendation+System;AI+%2B+Computer+Vision+Based+Fashion;Weather+%2B+User+Preference+Analysis;Built+with+Django+%26+Machine+Learning" /> </p> <p align="center"> <img src="https://img.shields.io/badge/Backend-Django-green?logo=django" /> <img src="https://img.shields.io/badge/Language-Python-blue?logo=python" /> <img src="https://img.shields.io/badge/AI-Deep%20Learning-orange" /> <img src="https://img.shields.io/badge/Computer%20Vision-MediaPipe-red" /> <img src="https://img.shields.io/badge/ML-Scikit--Learn-yellow" /> <img src="https://img.shields.io/badge/UI-HTML%2FCSS-blue" /> <img src="https://img.shields.io/badge/License-MIT-yellow" /> </p>
+👗 AI StyleFit | Smart Outfit Recommendation System
+
+<p align="center"> 
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=28&pause=1000&color=6366f1&center=true&vCenter=true&width=800&lines=AI+Fashion+Assistant;Client-Side+Computer+Vision;Netlify-Ready+Static+App;Built+with+MediaPipe+%26+JavaScript" /> 
+</p>
+
 📌 Overview
 
-The Smart Outfit Recommendation System is an AI-powered web application that uses machine learning and computer vision to recommend personalized outfits. It analyzes user preferences, body features, and real-time conditions like weather to deliver intelligent and context-aware fashion suggestions.
+StyleFit AI is a serverless, AI-powered web application that uses computer vision to recommend personalized outfits. By running MediaPipe directly in the browser, it analyzes body proportions and skin tones to deliver intelligent fashion suggestions without needing a backend server.
 
 ✨ Key Features
-👕 Personalized Outfit Suggestions – Based on user style & preferences
-🧠 AI/ML Recommendation Engine – Smart decision-making system
-📸 Computer Vision Integration – Body/feature detection using MediaPipe
-🌦️ Weather-Based Recommendations – Context-aware outfit selection
-🎯 User Input Customization – Occasion, mood, and style filtering
-⚡ Real-Time Processing – Instant recommendations
-📱 Responsive Design – Accessible across devices
-🎨 Modern UI/UX – Clean and interactive interface
+- 👕 Real-Time Body Analysis – Uses MediaPipe Pose JS for measurement estimation.
+- 🎨 Skin Tone Detection – Client-side pixel analysis for color palette suggestions.
+- 🚀 Netlify Optimized – 100% static architecture for free, fast hosting.
+- 📸 Camera & Upload Support – Works with both live video and photo uploads.
+- 📱 Fully Responsive – Premium design that feels like a native mobile app.
+
 🛠️ Tech Stack
-Layer	Technology
-Backend	Django (Python)
-AI/ML	Machine Learning, Deep Learning
-Computer Vision	MediaPipe, OpenCV
-Language	Python
-Frontend	HTML, CSS, JavaScript
-Libraries	NumPy, Pandas, Scikit-learn.
+- Frontend: HTML5, CSS3 (Vanilla), JavaScript (ES6+)
+- AI/ML: MediaPipe Pose, MediaPipe Camera Utils
+- Frameworks: Bootstrap 5 (Styling), FontAwesome (Icons)
 
-📸 Screenshots (Recommended)
+⚙️ Quick Start (Hosting)
 
-Add your project screenshots here
+1️⃣ Deployment on Netlify:
+- Just connect your GitHub repo to Netlify.
+- Netlify will automatically detect the `index.html` at the root.
 
-![Home](./screens/home.png)
-![Recommendations](./screens/recommendation.png)
-📂 Project Structure
-smart-outfit-recommendation/
-│── app/             # Django app
-│── models/          # ML models
-│── services/        # Recommendation logic
-│── static/          # CSS, JS files
-│── templates/       # HTML pages
-│── manage.py
-⚙️ Installation & Setup
-1️⃣ Clone the repository
-git clone https://github.com/SivashankarVP/smart-outfit-recommendation.git
-cd smart-outfit-recommendation
-2️⃣ Install dependencies
-pip install -r requirements.txt
-3️⃣ Run the server
-python manage.py runserver
-🎯 Use Case
-
-This project demonstrates AI + Computer Vision integration with web development, focusing on real-time personalization. It showcases skills in machine learning, backend development, and intelligent recommendation systems.
+2️⃣ Local Running:
+- Simply open `index.html` in any modern browser.
 
 🚀 Future Enhancements
-🧠 Advanced deep learning recommendation models
-👗 Virtual try-on using computer vision
-📊 User behavior learning system
-🛍️ E-commerce integration
-🎙️ Voice-based outfit assistant
-🤝 Contributing
-
-Contributions are welcome!
-
-Fork the repository
-Create a feature branch
-Commit your changes
-Open a pull request
-📧 Contact
-
-📩 sivashankarvp7@gmail.com
-
-⭐ Support
-
-If you like this project:
-👉 Give it a ⭐ on GitHub
-👉 Share it on LinkedIn
-
-🙌 Acknowledgement
-
-Inspired by combining AI, Computer Vision, and real-time data to solve everyday fashion decision-making problems.
+- [ ] Virtual Try-On using Three.js
+- [ ] Extended product catalog via API integration
+- [ ] Progressive Web App (PWA) support for offline use
 
 📜 License
-
-This project is licensed under the MIT License
+MIT License
